@@ -1,0 +1,389 @@
+enum STATUT {
+  ENTREPRISE
+  INFORMATIONS_PUBLIQUES
+  REGLE_A_DOMICILE
+  PAIMENT_EN_LIGNE
+  CATEGORIES
+  PRESTATIONS
+  PROFESSIONNELS
+  INSCRIT
+  ABONNE
+  RESILIE
+}
+
+type Entreprise @model @auth(rules: [{ allow: owner }]) {
+  #L'ID est l'adresse mail du dirigeant
+  id: ID!
+  prenom: String!
+  nom: String!
+  telephone: String!
+  siret: String!
+  account_ID: ID!
+  customer_ID: ID!
+  informations_publiques_ID: ID!
+  adresse_IP: String!
+  paiement_en_ligne: Boolean!
+  a_domicile: Boolean!
+  statut: STATUT!
+}
+
+enum PROFESSION {
+  COIFFEUR
+  COIFFEUR_A_DOMICILE
+  BARBIER
+  BARBIER_A_DOMICILE
+  INSTITUT_DE_BEAUTE
+  INSTITUT_DE_BEAUTE_A_DOMICILE
+  TATOUEUR
+  TATOUEUR_A_DOMICILE
+  MANUCURE
+  MANUCURE_A_DOMICILE
+  COACH_SPORTIF
+  COACH_SPORTIF_A_DOMICILE
+  OSTEOPATHE
+  OSTEOPATHE_A_DOMICILE
+  PSYCHOLOGUE
+  PSYCHOLOGUE_A_DOMICILE
+  NATUROPATHE
+  NATUROPATHE_A_DOMICILE
+}
+
+type Informationspubliques
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  profession: PROFESSION!
+  a_domicile: Boolean!
+  tva: Boolean!
+  paiement_en_ligne: Boolean!
+  pel_obligatoire: Boolean!
+  path: String!
+  member: String!
+  latitude: Float! @index(name: "byLatitude")
+  longitude: Float! @index(name: "byLongitude")
+  adresse_affichee: String!
+  nombre_de_semaines_prise_rdv: Int!
+  deux_jours_annulables: Boolean!
+  distance: Int!
+  notes_avis_visibles: Boolean!
+  #Uniquement si prestations non réservables en ligne
+  message_prestation_non_reservable: String
+}
+
+type Regleadomicile
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  distance_max: Int!
+  temps_max: Int!
+}
+
+type Categorie
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  nom: String!
+}
+
+type Prestation
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  categorie: String! @index(name: "byCategorie")
+  nom: String!
+  #1000 = 10€
+  tarif_ttc: Int!
+  duree: Int!
+  reservable: Boolean!
+  description: String!
+}
+
+type Professionnel
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliques")
+  a_domicile: Boolean!
+  nom_affiche: String!
+  prenom: String!
+  nom: String!
+  #Adresse mail du professionnel pour se connecter en accès restreint
+  email: String!
+  prestations: [String!]
+}
+
+enum JOUR {
+  LUNDI
+  MARDI 
+  MERCREDI 
+  JEUDI
+  VENDREDI
+  SAMEDI
+  DIMANCHE
+}
+
+type Horaire
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  #Format "lundi"
+  jour: JOUR! @index(name: "byJour")
+  heure_debut: String!
+  heure_fin: String!
+}
+
+type Blocage @model @auth(rules: [{ allow: owner, ownerField: "members" }]) {
+  id: ID!
+  #Subs de l'utilisateur et de l'entreprise
+  members: [String!]!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  user_email: String! @index(name: "byUserEmail")
+}
+
+type Utilisateur
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "members" }]) {
+  #Adresse mail de l'utilisateur
+  id: ID!
+  #Subs de l'utilisateur et des entreprises
+  members: [String!]!
+  customer_ID: ID!
+  mobile: String!
+  mobile_valide: Boolean!
+  souscription_mails: Boolean!
+  souscription_sms: Boolean!
+  latitude: Float! @index(name: "byLatitude")
+  longitude: Float! @index(name: "byLongitude")
+  adresse: String!
+}
+
+enum STATUT_RDV {
+  A_VENIR
+  ABSENT_SANS_MOTIF
+  ABSENT_AVEC_MOTIF
+  ANNULE_PAR_LE_PROFESSIONNEL
+  REALISE
+}
+
+type Rendezvous @model @auth(rules: [{ allow: owner, ownerField: "members" }]) {
+  id: ID!
+  #Subs de l'utilisateur, de l'entreprise et du professionnel
+  members: [String!]!
+  #Adresse mail de l'utilisateur
+  user_ID: ID! @index(name: "byUserId")
+  professionnel_ID: ID! @index(name: "byProfessionnelId")
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  customer_email: String!
+  latitude: Float!
+  longitude: Float!
+  adresse: String!
+  #Format 20230411
+  date: Int! @index(name: "byDate")
+  #Format 0800
+  heure_debut: String! @index(name: "byHeureDebut")
+  #Format 0800
+  heure_fin: String! @index(name: "byHeureFin")
+  prestation: String!
+  adresse_IP: String!
+  statut: STATUT_RDV!
+  paymentintent_ID: ID!
+  rappel_sms: Boolean!
+}
+
+type Fermeture
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  #Format 20230411 0800
+  date_debut: Int! @index(name: "byDateDebut")
+  date_fin: Int! @index(name: "byDateFin")
+  heure_debut: String! @index(name: "byHeureDebut")
+  heure_fin: String! @index(name: "byHeureFin")
+}
+
+type Absence
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  professionnel_ID: ID! @index(name: "byProfessionnel")
+  #Format 20230411 0800
+  date_debut: Int! @index(name: "byDateDebut")
+  date_fin: Int! @index(name: "byDateFin")
+  heure_debut: String! @index(name: "byHeureDebut")
+  heure_fin: String! @index(name: "byHeureFin")
+}
+
+enum ETAT_ABONNEMENT {
+  EN_COURS
+  ABONNE
+  EN_COURS_DE_RESILIATION
+  RESILIE
+}
+
+type Abonnement
+  @model
+  @auth(rules: [{ allow: owner }]) {
+  #Stripe subscription ID
+  id: ID!
+  nombre_de_professionnels: Int!
+  statut: ETAT_ABONNEMENT!
+  informations_publiques_ID: ID! @index(name: "byInformationspubliquesID")
+  date_debut: String!
+  #Date de fin de l'abonnement en Unix Time
+  date_expiration: String!
+}
+
+type Photo
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner, operations: [read, create, delete, update] }
+    ]
+  ) {
+  id: ID!
+  informations_publiques_ID: ID @index(name: "byInformationspubliquesID")
+  prestation_ID: ID @index(name: "byPrestation")
+  professionnel_ID: ID @index(name: "byProfessionnel")
+  key: String!
+}
+
+type Avis
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner }
+    ]
+  ) {
+  id: ID!
+  entreprise_ID: ID! @index(name: "byEntrepriseID")
+  user_ID: ID! @index(name: "byUserID")
+  #note de 0 à 5
+  note: Int!
+  #Format 20221201
+  date_avis: Int!
+}
+
+enum ETAT_ERROR {
+  A_RESOUDRE
+  EN_COURS
+  RESOLU
+}
+
+type Error @model @auth(rules: [{ allow: owner, ownerField: "members" }]) {
+  id: ID!
+  #Subs de l'utilisateur, de l'entreprise et du professionnel
+  members: [String!]!
+  branche: String!
+  composant: String!
+  fonction: String!
+  lambda: String!
+  texte: String!
+  #Format 20221201
+  date_error: Int!
+  statut: ETAT_ERROR! @index(name: "byStatut")
+}
+
+enum ETAT_TODO {
+  EN_COURS
+  A_FAIRE
+  FAIT
+  A_AMELIORER
+}
+
+type Todo @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  branche: String!
+  composant: String!
+  fonction: String!
+  lambda: String!
+  texte: String!
+  #Format 20221201
+  date_todo: Int!
+  statut: ETAT_TODO! @index(name: "byStatut")
+}
+
+enum PAYMENT_STATUT {
+  EN_COURS
+  ERREUR
+  ANNULE
+  PAYE
+  TRANSFERE
+  REMBOURSEMENT_TOTAL
+  REMBOURSEMENT_PARTIEL
+}
+
+enum PAYMENT_TYPE {
+  SUBSCRIPTION_FIRST
+  SUBSCRIPTION_RENEWAL
+  PRODUCT
+}
+
+type Paiement @model @auth(rules: [{ allow: owner, ownerField: "members" }]) {
+  #Stripe paymentintent ID
+  id: ID!
+  #Subs de l'utilisateur et de l'entreprise
+  members: [String!]!
+  customer_ID: ID! @index(name: "byCustomerID")
+  account_ID: ID! @index(name: "byAccountID")
+  subscription_ID: ID @index(name: "bySubscriptionID")
+  type: PAYMENT_TYPE!
+  statut: PAYMENT_STATUT!
+  line_items: [String!]!
+  #format 20230925
+  date_achat: Int!
+  #format 20230925
+  date_rdv: Int! @index(name: "byDateRdv")
+  #1000 = 10€
+  prix: Int!
+  #1000 = 10€
+  refund: Int!
+  invoice_url: String!
+  receipt_url: String!
+}

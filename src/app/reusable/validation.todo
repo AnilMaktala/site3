@@ -1,0 +1,11 @@
+minLength: Validator that requires controls to have a value of a minimum length.
+
+maxLength: Validator that requires controls to have a value of a maximum length.
+
+pattern: Validator that requires a control to match a regex to its value. You can find more information about regex patterns in the PatternValidator reference.
+
+email: Validator that performs email validation.
+
+compose: is used when more than one validation is needed for the same form field.
+
+required: Validator that requires controls to have a non-empty value. It also validates that the value matches the input type. For example, if the input is of “email” type, then the input will be valid if it's not empty and if the value is of email type.

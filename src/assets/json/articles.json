@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Create a Globally Available Custom Pipe in Angular",
+    "url": "https://scotch.io/?p=13431",
+    "demo": "global-pipe",
+    "desc": "Understanding, creating and using pipe."
+  },
+  {
+    "name": "How to Deal with Different Form Controls in Angular",
+    "url": "https://scotch.io/?p=13444",
+    "demo": "diff-form-ctrls",
+    "desc": "Dealing with different form controls in template-driven form."
+  },
+  {
+    "name": "Using Angular's Template-Driven Forms",
+    "url": "https://scotch.io/?p=13446",
+    "demo": "template-driven-frm",
+    "desc": "What is template-driven form and how to use it."
+  },
+  {
+    "name": "Using Angular's Model-Driven Forms",
+    "url": "https://scotch.io/?p=13438",
+    "demo": "model-driven-frm",
+    "desc": "What is model-driven form and how to use it."
+  },
+  {
+    "name": "How to Build Nested Model-driven Forms in Angular",
+    "url": "https://scotch.io/?p=13483",
+    "demo": "nested-model-driven-frm",
+    "desc": "Handle validatiion and binding in nested model driven form."
+  },
+  {
+    "name": "How to Implement Conditional Validation in Angular Model-driven Forms",
+    "url": "https://scotch.io/?p=13497",
+    "demo": "conditional-val-model-driven-frm",
+    "desc": "Handling conditional validation in Angular Model-driven form."
+  },
+  {
+    "name": "Simple Language Translation in Angular ( 1)",
+    "url": "https://scotch.io/?p=13499",
+    "demo": "simple-language-translation--1",
+    "desc": "A two s tutorial.  1. Implementing translation."
+  },
+  {
+    "name": "Simple Language Translation in Angular ( 2)",
+    "url": "https://scotch.io/?p=13501",
+    "demo": "simple-language-translation--2",
+    "desc": "A two s tutorial.  2. Implementing translation."
+  },
+  {
+    "name": "Using HammerJS (Touch gesture) in Angular",
+    "url": "https://scotch.io/?p=13550",
+    "demo": "hammerjs",
+    "desc": "Swipe left, swipe right in Angular."
+  },
+  {
+    "name": "How to Implement a Custom Validator Directive (Confirm Password) in Angular",
+    "url": "https://scotch.io/?p=13552",
+    "demo": "custom-validator",
+    "desc": "Create a validator to handle confirm password."
+  },
+  {
+    "name": "Getting to Know Angular's Module: @NgModule",
+    "url": "https://scotch.io/bar-talk/getting-to-know-angular-2s-module-ngmodule",
+    "demo": "",
+    "desc": "Understanding Angular Module"
+  },
+  {
+    "name": "Angular Transclusion using ng-content",
+    "url": "https://scotch.io/tutorials/angular-2-transclusion-using",
+    "demo": "transclusion",
+    "desc": "What is transclusion. Handling content projection in Angular."
+  },
+  {
+    "name": "Component Inheritance in Angular",
+    "url": "https://scotch.io/tutorials/component-inheritance-in-angular-2",
+    "demo": "component-inheritance",
+    "desc": "Component is inheritable. Explaining component inheritance with a simple pagination example."
+  },
+  {
+    "name": "Dynamic Form Array Validation in Model Driven Form",
+    "url": "",
+    "demo": "dynamic-form-array-val",
+    "desc": "Handle form array validation dynamically and reactively."
+  },
+  {
+    "name": "Responsive Equal Height with Angular Directive",
+    "url": "https://scotch.io/tutorials/responsive-equal-height-with-angular-directive",
+    "demo": "same-height",
+    "desc": "Making element same height."
+  },
+  {
+    "name": "3 ways to Pass Async Data to Angular Child Component ",
+    "url": "https://scotch.io/tutorials/3-ways-to-pass-async-data-to-angular-child-component",
+    "demo": "three-ways",
+    "desc": "Three ways"
+  },
+  {
+    "name": "How to Handle File Upload in Angular",
+    "url": "https://scotch.io/tutorials/how-to-handle-file-upload-in-angular",
+    "demo": "file-upload",
+    "desc": "Handle file upload in Angular"
+  }
+]

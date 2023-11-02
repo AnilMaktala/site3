@@ -1,0 +1,3 @@
+- Gestion des messages d'erreurs fournis par AWS.
+- Mettre un toggle d'auto-login sur le composant de connexion.
+- Ajouter le login social Facebook et Gmail.

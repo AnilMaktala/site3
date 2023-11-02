@@ -1,0 +1,13 @@
+/tmp
+/dist
+/out-tsc
+/bazel-out
+/backend
+/node_modules
+**/node_modules
+.DS_Store
+Thumbs.db
+/.angular
+**/.DS_Store
+**/.git
+

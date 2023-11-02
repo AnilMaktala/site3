@@ -1,0 +1,12 @@
+<div>
+  <div class="w-100 centercenter px-1 pt-2">
+    <div class="alerte">
+      Vous allez recevoir un code par mail. Notez-le, il vous sera demandé dans
+      le prochain formulaire.
+    </div>
+  </div>
+  <inputemail [model]="email"></inputemail>
+  <div (click)="resendcode()" data-testid="resendcode">
+    <button class="simplelarge">Renvoyer le code</button>
+  </div>
+</div>

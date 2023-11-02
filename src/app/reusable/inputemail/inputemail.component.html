@@ -1,0 +1,13 @@
+<form #form="ngForm" class="my-2" autocomplete="off">
+  <div class="contenant">
+    <div style="word-wrap: break-word;">
+      <div class="label" [ngClass]="{ displaynone: (form.invalid && !model.a.premieressai)  }">{{ model.a.label }}
+      </div>
+      <div class="error" [ngClass]="{ displaynone: !(form.invalid && !model.a.premieressai)  }">{{ model.a.errormsg }}
+      </div>
+    </div>
+    <input class="input" [attr.data-testid]='model.a.id' #email="ngModel" email type="email" name="email"
+      style="word-wrap: break-word;" [maxlength]="model.a.maxlength" [(ngModel)]="model.a.input"
+      (input)="model.a.validity=!(form.invalid);" autocomplete="off" />
+  </div>
+</form>

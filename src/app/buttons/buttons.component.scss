@@ -1,0 +1,7 @@
+.simple{
+  @apply py-1.5 px-4 bg-blue-500 text-white text-lg rounded-lg
+}
+
+.outline{
+  @apply py-1 px-4 bg-transparent border-2 border-blue-500 text-blue-500 text-lg rounded-lg
+}

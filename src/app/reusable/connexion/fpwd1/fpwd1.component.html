@@ -1,0 +1,14 @@
+<div>
+  <div class="w-100 centercenter px-1 pt-2">
+    <div class="alerte">
+      Vous allez recevoir un code par mail. Notez-le, il vous sera demandé dans
+      le prochain formulaire.
+    </div>
+  </div>
+
+  <inputemail [model]="email"></inputemail>
+
+  <div (click)="demandermdp()" data-testid="demandermdp">
+    <button class="simplelarge">Demander un nouveau mot de passe</button>
+  </div>
+</div>

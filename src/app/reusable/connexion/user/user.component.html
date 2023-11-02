@@ -1,0 +1,52 @@
+<div class="fixed left-0 bg-white w-full h-full centercenter" style="top: 2px;">
+  <div class="border p-8 flex flex-col bg-white rounded overflow-hidden" style="width: 300px; border-color: #ef3939">
+    <div class="p-3 haut">
+      <div class="centercenter">
+        <img class="my-3" src="../../../../assets/logo.jpg" style="height: 100px" />
+      </div>
+      
+      <div class="w-100 centercenter p-0 cursor-pointer" [ngClass]="{ hidden: global_service.activelogin === 'signin' }">
+        <h6>
+          <a style="text-decoration: none; color: #000; font-size: 18px"
+            (click)="global_service.activelogin = 'signin'; global_service.errorstatus = 'off'"><b>Se connecter</b></a>
+        </h6>
+      </div>
+
+      <div class="w-100 centercenter p-0 cursor-pointer" [ngClass]="{ hidden: global_service.activelogin === 'signup' }">
+        <h6>
+          <a data-testid="inscription1" style="text-decoration: none; color: #000; font-size: 18px"
+            (click)="global_service.activelogin = 'signup'; global_service.errorstatus = 'off'"><b>S'inscrire</b></a>
+        </h6>
+      </div>
+
+      <div class="w-100 centercenter p-0 cursor-pointer" [ngClass]="{ hidden: global_service.activelogin === 'fpwd1' }">
+        <h6>
+          <a style="text-decoration: none; color: #000; font-size: 18px"
+            (click)="global_service.activelogin = 'fpwd1'; global_service.errorstatus = 'off'"><b>Mot de passe oublié</b></a>
+        </h6>
+      </div>
+    </div>
+
+    <app-error [ngClass]="{ hidden: global_service.errorstatus === 'off' }"></app-error>
+
+    <app-error class="invisible" [ngClass]="{ hidden: global_service.errorstatus === 'on' }"></app-error>
+
+    <signin [ngClass]="{ hidden: global_service.activelogin !== 'signin' }">
+    </signin>
+
+    <signup [ngClass]="{ hidden: global_service.activelogin !== 'signup' }"></signup>
+
+    <fpwd2 [ngClass]="{ hidden: global_service.activelogin !== 'fpwd2' }"></fpwd2>
+
+    <confirmsignup [ngClass]="{
+        hidden: global_service.activelogin !== 'confirmsignup'
+      }"></confirmsignup>
+
+    <resendcode [ngClass]="{
+        hidden: global_service.activelogin !== 'resendcode'
+      }"></resendcode>
+
+    <fpwd1 [ngClass]="{ hidden: global_service.activelogin !== 'fpwd1' }"></fpwd1>
+
+  </div>
+</div>

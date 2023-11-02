@@ -1,0 +1,19 @@
+{
+    "AppSyncApiName": "site2",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authsite266da9eeb",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "S3DeploymentBucket": "amplify-site2-dev-193650-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/e2d86e1dc1cf00c7e015876806241724c45757dc"
+}

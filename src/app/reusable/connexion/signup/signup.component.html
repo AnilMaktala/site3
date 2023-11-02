@@ -1,0 +1,13 @@
+<div>
+  <div class="w-100 centercenter py-1">
+    <div class="alerte">
+      Vous allez recevoir un code par mail. Notez-le, il vous sera demandé dans
+      le prochain formulaire.
+    </div>
+  </div>
+  <inputemail [model]="email"></inputemail>
+  <inputpassword [model]="password"></inputpassword>
+  <div (click)="signup()" data-testid="signup">
+    <button class="simplelarge">S'inscrire</button>
+  </div>
+</div>

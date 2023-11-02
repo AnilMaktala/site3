@@ -1,0 +1,15 @@
+<div>
+  <inputemail [model]="email"></inputemail>
+  <inputpassword [model]="password"></inputpassword>
+  <div (click)="signin()" data-testid="signin">
+    <button class="simplelarge">Se connecter</button>
+  </div>
+  <div class="flex">
+    <div class="w-1/5">
+      <div class="cursor-pointer" (click)="toggle()">
+        <toggle [valeur]="valeur"></toggle>
+      </div>
+    </div>
+    <div class="w-4/5 font-semibold text-xl text-right">Login automatique</div>
+  </div>
+</div>

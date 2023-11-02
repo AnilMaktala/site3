@@ -1,0 +1,3 @@
+When you have a copy of an object the [checked] attribute might not work, in that case, you can use (change) in this way:
+
+<input type="checkbox" [checked]="item.selected" (change)="item.selected = !item.selected">

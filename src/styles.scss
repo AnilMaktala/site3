@@ -1,0 +1,165 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+html,
+body {
+  height: 100%;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus {
+  outline: none !important;
+}
+
+.comment {
+  @apply py-0.5 px-3 my-2 bg-blue-500 text-white outline outline-1 outline-blue-600 rounded-lg w-full font-medium overflow-hidden;
+}
+
+.item {
+  @apply px-2 py-1 my-2 bg-white text-black text-lg rounded-lg w-full outline outline-1 outline-gray-400;
+}
+
+//buttons
+
+.simple {
+  @apply py-0.5 px-4 bg-blue-500 text-white text-lg rounded;
+}
+
+.simplelarge {
+  @apply py-0.5 px-4 bg-blue-500 text-white text-lg rounded w-full;
+}
+
+//positionnement
+
+.centercenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-webkit-autofill:valid,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active,
+textarea:-webkit-autofill:valid,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+select:-webkit-autofill:active,
+select:-webkit-autofill:valid {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(229 231 235) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.centerleft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.centerright {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.flexrowstart {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.flexrowend {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.flexcolumnstart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flexcolumnend {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* .enterprisecolor {
+    color: $red !important;
+}
+ */
+
+/* Container
+sm	640px	@media (min-width: 640px) { ... }
+md	768px	@media (min-width: 768px) { ... }
+lg	1024px	@media (min-width: 1024px) { ... }
+*/
+
+@media (min-width: 768px) {
+  .container2 {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container2 {
+    width: 66%;
+  }
+}
+
+/* Visibilités
+sm	640px	@media (min-width: 640px) { ... }
+md	768px	@media (min-width: 768px) { ... }
+lg	1024px	@media (min-width: 1024px) { ... }
+hidden = absent du DOM.
+invisible = présent dans le DOM.
+*/
+
+.mobileblock {
+  @apply block sm:hidden;
+}
+
+.smblock {
+  @apply hidden sm:block;
+}
+
+.mdblock {
+  @apply hidden md:block;
+}
+
+.lgblock {
+  @apply hidden lg:block;
+}
+
+.mobilevisible {
+  @apply visible sm:invisible;
+}
+
+.smvisible {
+  @apply invisible sm:visible;
+}
+
+.mdvisible {
+  @apply invisible md:visible;
+}
+
+.lgvisible {
+  @apply invisible lg:visible;
+}

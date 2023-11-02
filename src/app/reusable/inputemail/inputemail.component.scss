@@ -1,0 +1,19 @@
+.error{
+  @apply w-full text-red-500 text-xs font-semibold px-1;
+}
+
+.label{
+  @apply w-full text-xs font-semibold px-1;
+}
+
+.displaynone{
+  display: none;
+}
+
+.input {
+  @apply w-full px-1 text-black placeholder-gray-600 py-0.5 text-lg border-transparent rounded-lg bg-gray-200 ring-offset-current ring-offset-2 ring-gray-400
+}
+
+.contenant {
+  @apply w-full text-black placeholder-gray-600 px-3 py-0.5 border-transparent rounded-lg bg-gray-200 ring-offset-current ring-offset-2 ring-gray-400
+}
