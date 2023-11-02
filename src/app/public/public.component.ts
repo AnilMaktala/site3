@@ -12,6 +12,6 @@ export class PublicComponent implements OnInit {
   constructor(private api: APIService) {}
 
   async ngOnInit(): Promise<void> {
-    await this.api.ListTodos();
+    this.result = await this.api.ListTodos();
   }
 }

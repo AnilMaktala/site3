@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { APIService } from '../API.service';
+import { Component, OnInit } from "@angular/core";
+import { APIService } from "../API.service";
 
 @Component({
   selector: "app-private",
@@ -12,10 +12,8 @@ export class PrivateComponent implements OnInit {
   constructor(private api: APIService) {}
 
   async ngOnInit(): Promise<void> {
-    await this.api.CreateTodo(
-      {
-        name:"essai"
-      }
-    )
+    this.result = await this.api.CreateTodo({
+      name: "essai",
+    });
   }
 }
